@@ -1,4 +1,4 @@
-package Test4;
+package Week1.Test4;
 
 import java.util.*;
 

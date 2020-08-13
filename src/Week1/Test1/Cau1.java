@@ -1,4 +1,4 @@
-package Test1;
+package Week1.Test1;
 import java.util.*;
 import java.util.concurrent.ThreadLocalRandom;
 import java.io.*;
