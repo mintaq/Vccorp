@@ -21,7 +21,7 @@ public class FileExecutor {
 
 	public static void startExecute() {
 		File dir = new File(inputFolderPath);
-		ExecutorService executor = Executors.newFixedThreadPool(6);
+		ExecutorService executor = Executors.newFixedThreadPool(5);
 		int index = 1;
 
 		if (dir.isDirectory()) {
@@ -45,26 +45,30 @@ public class FileExecutor {
 	}
 
 	public static void top10Words(HashMap<String, Integer> map) {
-		ArrayList keyList = new ArrayList(map.keySet());
+		ArrayList<String> keyList = new ArrayList<String>(map.keySet());
+		int i = 0;
 
 		System.out.println("Top 10 Words:");
-		for (int i = 0; i < 10; i++) {
-			String key = (String) keyList.get(i);
+		while (i < keyList.size() && i < 10) {
+			String key = keyList.get(i);
 			int value = map.get(key);
 			System.out.println(key + "=" + value);
-
+			i++;
 		}
 	}
 
 	public static void bottom10Words(HashMap<String, Integer> map) {
-		ArrayList keyList = new ArrayList(map.keySet());
+		ArrayList<String> keyList = new ArrayList<String>(map.keySet());
+		int i = keyList.size()-1;
+		int j = 0;
 
 		System.out.println("Bottom 10 Words:");
-		for (int i = keyList.size() - 1; i > keyList.size() - 11; i--) {
-			String key = (String) keyList.get(i);
+		while (j < 10 && i >= 0) {
+			String key = keyList.get(i);
 			int value = map.get(key);
 			System.out.println(key + "=" + value);
-
+			i--;
+			j++;
 		}
 	}
 

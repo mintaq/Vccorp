@@ -14,10 +14,12 @@ public class FileHandler implements Runnable {
 
 	public static void countWords(File file) {
 		HashMap<String, Integer> words = new HashMap<String, Integer>();
+		Scanner sc = null;
 		try {
-			Scanner sc = new Scanner(file);
+			 sc = new Scanner(file);
 			while (sc.hasNext()) {
 				String word = sc.next();
+				word = word.replace(",", "").replace(".", "");
 				Integer count = words.get(word);
 				if (count != null)
 					count++;
@@ -26,9 +28,11 @@ public class FileHandler implements Runnable {
 				words.put(word, count);
 			}
 			FileExecutor.addToMainMap(words);
-			sc.close();
+			
 		} catch (FileNotFoundException e) {
 			e.printStackTrace();
+		} finally {
+			sc.close();
 		}
 	}
 
